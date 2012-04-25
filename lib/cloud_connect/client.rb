@@ -32,9 +32,9 @@ module CloudConnect
     # @return [String]
     def api_url
       if env == "preprod"
-        "http://srv/api/v1.5"
+        "http://srv/api/v1.5/rest"
       else
-        "http://#{env}.g8teway.com/api/v1.5"
+        "http://#{env}.g8teway.com/api/v1.5/rest"
       end
     end
 
