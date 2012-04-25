@@ -40,7 +40,7 @@ module CloudConnect
 
 
     def login
-      req = connection.post('session', {:login => username, :password => password, :client => account})
+      req = connection.post('session', {:username => username, :password => password, :client => account})
     end
 
     private
