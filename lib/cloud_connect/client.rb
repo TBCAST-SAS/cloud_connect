@@ -17,13 +17,16 @@ module CloudConnect
       params = {}
       params[:access_token] = @access_token if @access_token
       @connection ||= Faraday::Connection.new(:url => api_url, :params => params, :headers => default_headers) do |builder|
+        builder.use FaradayMiddleware::EncodeJson
+
         builder.use Faraday::Request::CookieAuth, self
-        builder.adapter Faraday.default_adapter
+        builder.use Faraday::Adapter::NetHttp 
+
         builder.use Faraday::Response::RaiseHttp5xx
-        builder.use Faraday::Response::ParseJson
         builder.use Faraday::Response::RaiseHttp4xx
         builder.use Faraday::Response::Mashify
-        #builder.response :yajl     # Faraday::Request::Yajl
+
+        builder.request :json
       end
     end
 
@@ -40,13 +43,17 @@ module CloudConnect
 
 
     def login
-      req = connection.post('sessions', {:login => username, :password => password, :client => account})
+      connection.
+        post('sessions', 
+             {:login => username, :password => password, :client => account}
+             )
     end
 
     private
       # @private
       def default_headers
         headers = {
+          :content_type => 'application/json',
           :accept =>  'application/json',
           :user_agent => 'CloudClient Ruby gem'
         }
