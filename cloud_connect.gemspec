@@ -14,13 +14,12 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
   s.add_runtime_dependency "json"
-  s.add_runtime_dependency "multi_json", "~> 1.1.0"
-  s.add_runtime_dependency "faraday", "~> 0.5.0"
-  s.add_runtime_dependency "faraday_middleware", "~> 0.1.6"
-  s.add_runtime_dependency "hashie", "~> 0.4.0"
+  s.add_runtime_dependency "multi_json", "~> 1.3.4"
+  s.add_runtime_dependency "faraday", "~> 0.8.0"
+  s.add_runtime_dependency "faraday_middleware", "~> 0.8.7"
+  s.add_runtime_dependency "hashie", "~> 1.2.0"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "bluecloth", ">= 2.0"
   s.add_development_dependency "rake", "~> 0.8"
   #s.add_development_dependency "yard", "~> 0.6"
   s.add_development_dependency "rspec"
